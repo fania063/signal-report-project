@@ -28,8 +28,9 @@ $data_lokasi = [
 
         <!-- Content -->
         <div class="bg-primary bg-opacity-25 p-4 rounded shadow mt-5">
-            <div class="d-flex flex-column gap-2">
-                <button type="submit" class="btn ms-auto btn-dark mode px-4">Create</button>
+           <div class="d-flex flex-column gap-2">
+                <a href="reglok.php" class="btn btn-dark mode px-4 ms-auto">Create</a>
+            </div>
                 <div class="table-responsive">
                     <table class="table table-bordered align-middle">
                         <thead class="table-light">
