@@ -35,7 +35,7 @@ $menuItems = [
     [
         'title' => 'Riwayat Laporan',
         'icon' => 'fas fa-chart-bar',
-        'href' => 'report.php',
+        'href' => 'riwayat.php',
         'role' => ['admin']
     ],
     [
@@ -47,7 +47,7 @@ $menuItems = [
     [
         'title' => 'Registrasi Akun',
         'icon' => 'fas fa-user',
-        'href' => 'registrasi_akun.php',
+        'href' => 'admregakun.php',
         'role' => ['admin']
     ],
 ];
