@@ -1,10 +1,57 @@
 <?php
 session_start();
 
+
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit;
 }
+
+$menuItems = [
+    [
+        'title' => 'Homepage',
+        'icon' => 'fas fa-home',
+        'href' => 'dashboard.php',
+        'role' => ['pelapor', 'admin'] // tampil untuk semua role
+    ],
+    [
+        'title' => 'Tulis Laporan',
+        'icon' => 'fas fa-pen',
+        'href' => 'lapor.php',
+        'role' => ['pelapor']
+    ],
+    [
+        'title' => 'Daftar Laporan',
+        'icon' => 'fas fa-list',
+        'href' => 'daftar.php',
+        'role' => ['pelapor']
+    ],
+    [
+        'title' => 'Laporan Masuk',
+        'icon' => 'fas fa-users-cog',
+        'href' => 'lapmasuk.php',
+        'role' => ['admin']
+    ],
+    [
+        'title' => 'Riwayat Laporan',
+        'icon' => 'fas fa-chart-bar',
+        'href' => 'report.php',
+        'role' => ['admin']
+    ],
+    [
+        'title' => 'Registrasi Lokasi',
+        'icon' => 'fas fa-map-marker-alt',
+        'href' => 'registrasi_lokasi.php',
+        'role' => ['admin']
+    ],
+    [
+        'title' => 'Registrasi Akun',
+        'icon' => 'fas fa-user',
+        'href' => 'registrasi_akun.php',
+        'role' => ['admin']
+    ],
+];
+
 
 $user = $_SESSION['user'];
 ?>
@@ -21,36 +68,15 @@ $user = $_SESSION['user'];
             <h5 class="mt-2">Lapor Sinyal Desa</h5>
         </div>
         <ul class="nav flex-column">
-            <li class="nav-item mb-3">
-                <a class="nav-link <?= $current_page == 'dashboard.php' ? 'text-black bg-white text-dark fw-bold rounded' : 'text-white-50' ?>" href="dashboard.php">
-                    <i class="fas fa-home me-4"></i> Homepage
-                </a>
-            </li>
-            <?php if ($user['role'] == 'pelapor'): ?>
-                <li class="nav-item mb-3">
-                    <a class="nav-link <?= $current_page == 'lapor.php' ? 'text-black bg-white text-dark fw-bold rounded' : 'text-white-50' ?>" href="lapor.php">
-                        <i class="fas fa-pen me-4"></i> Tulis Laporan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= $current_page == 'daftar.php' ? 'text-black bg-white text-dark fw-bold rounded' : 'text-white-50' ?>" href="daftar.php">
-                        <i class="fas fa-list me-4"></i> Daftar Laporan
-                    </a>
-                </li>
-            <?php endif; ?>
-             <?php if ($user['role'] == 'admin'): ?>
-                <li class="nav-item mb-3">
-                    <a class="nav-link <?= $current_page == 'manage_users.php' ? 'text-black bg-white text-dark fw-bold rounded' : 'text-white-50' ?>" href="manage_users.php">
-                        <i class="fas fa-users-cog me-4"></i>Laporan Masuk
-                    </a>
-                </li>
-
-                <li class="nav-item mb-3">
-                    <a class="nav-link <?= $current_page == 'report.php' ? 'text-black bg-white text-dark fw-bold rounded' : 'text-white-50' ?>" href="report.php">
-                        <i class="fas fa-chart-bar me-4"></i> Riwayat Laporan
-                    </a>
-                </li>
-            <?php endif; ?>
+            <?php foreach ($menuItems as $item): ?>
+                <?php if (in_array($user['role'], $item['role'])): ?>
+                    <li class="nav-item mb-3">
+                        <a class="nav-link <?= $current_page == $item['href'] ? 'text-black bg-white text-dark fw-bold rounded' : 'text-white-50' ?>" href="<?= $item['href'] ?>">
+                            <i class="<?= $item['icon'] ?> me-4"></i> <?= $item['title'] ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </ul>
     </div>
 </div>

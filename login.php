@@ -12,7 +12,7 @@ $users = [
     [
         'id_user' => 2,
         'nama' => 'Admin',
-        'email' => 'admin@example.com',
+        'email' => 'fania@example.com',
         'password' => 'admin123',
         'role' => 'admin'
     ]
