@@ -41,7 +41,7 @@ $menuItems = [
     [
         'title' => 'Registrasi Lokasi',
         'icon' => 'fas fa-map-marker-alt',
-        'href' => 'registrasi_lokasi.php',
+        'href' => 'admreglok.php',
         'role' => ['admin']
     ],
     [
