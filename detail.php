@@ -30,7 +30,7 @@ $riwayat_status = [
 
 $status_sekarang = strtolower($laporan['status']);
 
-// Buat tahapan berdasarkan status sekarang
+// Tahapan proses
 $tahapan = [];
 
 switch ($status_sekarang) {
@@ -41,7 +41,6 @@ switch ($status_sekarang) {
             ['label' => 'Selesai', 'deskripsi' => 'Belum selesai', 'badge' => 'secondary']
         ];
         break;
-
     case 'proses':
         $tahapan = [
             ['label' => 'Ajukan', 'deskripsi' => 'Laporan anda sudah diajukan', 'badge' => 'primary'],
@@ -49,7 +48,6 @@ switch ($status_sekarang) {
             ['label' => 'Selesai', 'deskripsi' => 'Belum selesai', 'badge' => 'secondary']
         ];
         break;
-
     case 'selesai':
         $tahapan = [
             ['label' => 'Ajukan', 'deskripsi' => 'Laporan anda sudah diajukan', 'badge' => 'primary'],
@@ -57,14 +55,12 @@ switch ($status_sekarang) {
             ['label' => 'Selesai', 'deskripsi' => 'Laporan telah selesai', 'badge' => 'success']
         ];
         break;
-
     case 'ditolak':
         $tahapan = [
             ['label' => 'Ajukan', 'deskripsi' => 'Laporan anda sudah diajukan', 'badge' => 'primary'],
             ['label' => 'Ditolak', 'deskripsi' => end($riwayat_status)['catatan_admin'] ?? 'Laporan ditolak oleh admin', 'badge' => 'danger']
         ];
         break;
-
     default:
         $tahapan = [];
 }
@@ -132,7 +128,7 @@ switch ($status_sekarang) {
                 <div class="col-sm-8"><?= $laporan['lokasi']; ?></div>
             </div>
 
-            <!-- TAHAPAN STATUS -->
+            <!-- TAHAPAN -->
             <div class="my-4">
                 <div class="d-flex justify-content-between align-items-center text-center">
                     <?php foreach ($tahapan as $i => $step): ?>
@@ -150,20 +146,27 @@ switch ($status_sekarang) {
                 </div>
             </div>
 
-            <!-- CATATAN ADMIN -->
-            <?php if ($status_sekarang === 'ditolak'): ?>
-                <div class="alert alert-danger mt-3">
-                    <strong>Catatan Admin:</strong> <?= end($riwayat_status)['catatan_admin'] ?>
-                </div>
-            <?php endif; ?>
+            <?php if ($status_sekarang === 'ajukan' || $status_sekarang === 'proses'): ?>
+    <div class="row align-items-start mt-4">
+        <div class="col-md-10">
+            <div class="p-3 rounded h-100 d-flex align-items-center" style="background-color: #f4f2ff; border: 1px solid #d3cfe5;">
+                <p class="mb-0 text-muted" style="font-size: 0.95rem;">
+                    Terima kasih atas laporannya. Kami akan segera menindaklanjuti gangguan sinyal di wilayah 
+                    <?= $laporan['lokasi'] ?> yang disebabkan oleh tiang listrik roboh. Tim teknis akan 
+                    berkoordinasi dengan pihak terkait untuk memperbaiki kerusakan dan memulihkan jaringan secepatnya. 
+                    Mohon kesabarannya.
+                </p>
+            </div>
+        </div>
 
-            <!-- TOMBOL AKSI -->
-            <?php if (!in_array($status_sekarang, ['ditolak', 'selesai','Ajukan'])): ?>
-                <div class="d-flex justify-content-end gap-2 mt-3">
-                    <button type="submit" name="action" value="tolak" class="btn btn-danger">X</button>
-                    <button type="submit" name="action" value="proses" class="btn btn-success">Proses</button>
-                </div>
-            <?php endif; ?>
+        <div class="col-md-2 d-flex flex-column justify-content-between gap-2">
+            <button type="submit" name="action" value="tolak" class="btn btn-danger w-100">TOLAK</button>
+            <button type="submit" name="action" value="proses" class="btn btn-primary w-100">PROSES</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+
 
         </form>
     </div>
