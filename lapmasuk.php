@@ -41,7 +41,7 @@
                     <td>
                         <span style="background-color:rgb(213, 241, 88); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">Proses</span>
                     </td>
-                    <td><a href="daftarlapor.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
+                    <td><a href="detail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                     </tr>
                     </tr>
                     </thead>
@@ -83,7 +83,7 @@
                     <td>
                         <span style="background-color:rgb(223, 41, 28); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">Ditolak</span>
                     </td>
-                    <td><a href="daftarlapor.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
+                    <td><a href="penolakan.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                     </tr>
                     </tr>
                     </thead>
