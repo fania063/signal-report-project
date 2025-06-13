@@ -65,8 +65,7 @@
                     <div class="col-sm-8">
                         <span class="badge bg-danger fs-6">Ditolak</span>
                         <p class="text-danger mt-2 mb-0" style="font-size: 0.9rem;">
-                            Terima kasih atas laporannya. Kami akan segera menindaklanjuti gangguan sinyal di wilayah Jl. Palawaran yang disebabkan oleh tiang listrik roboh. 
-                            Tim teknis akan berkoordinasi dengan pihak terkait untuk memperbaiki kerusakan dan memulihkan jaringan secepatnya. Mohon kesabarannya.
+                        Tidak ada bukti gangguan yang valid.
                         </p>
                     </div>
                 </div>
