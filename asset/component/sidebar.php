@@ -29,7 +29,7 @@ $menuItems = [
     [
         'title' => 'Laporan Masuk',
         'icon' => 'fas fa-users-cog',
-        'href' => 'lapmasuk.php',
+        'href' => 'admlapmasuk.php',
         'role' => ['admin', 'superadmin']
     ],
     [
