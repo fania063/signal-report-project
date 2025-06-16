@@ -1,7 +1,7 @@
 <?php
     session_start();
     include 'controller/auth.php';
-
+    $error = false;
     if (isset($_SESSION['user'])) {
         header("Location: dashboard.php");
         exit;
