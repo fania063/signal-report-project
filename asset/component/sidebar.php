@@ -12,43 +12,43 @@ $menuItems = [
         'title' => 'Homepage',
         'icon' => 'fas fa-home',
         'href' => 'dashboard.php',
-        'role' => ['pelapor', 'admin'] // tampil untuk semua role
+        'role' => ['pelapor', 'admin', 'superadmin'] 
     ],
     [
         'title' => 'Tulis Laporan',
         'icon' => 'fas fa-pen',
         'href' => 'lapor.php',
-        'role' => ['pelapor']
+        'role' => ['pelapor', 'superadmin']
     ],
     [
         'title' => 'Daftar Laporan',
         'icon' => 'fas fa-list',
         'href' => 'daftar.php',
-        'role' => ['pelapor']
+        'role' => ['pelapor', 'superadmin']
     ],
     [
         'title' => 'Laporan Masuk',
         'icon' => 'fas fa-users-cog',
         'href' => 'lapmasuk.php',
-        'role' => ['admin']
+        'role' => ['admin', 'superadmin']
     ],
     [
         'title' => 'Riwayat Laporan',
         'icon' => 'fas fa-chart-bar',
         'href' => 'riwayat.php',
-        'role' => ['admin']
+        'role' => ['admin', 'superadmin']
     ],
     [
         'title' => 'Registrasi Lokasi',
         'icon' => 'fas fa-map-marker-alt',
-        'href' => 'admreglok.php',
-        'role' => ['admin']
+        'href' => 'location.php',
+        'role' => ['admin', 'superadmin']
     ],
     [
         'title' => 'Registrasi Akun',
         'icon' => 'fas fa-user',
         'href' => 'admregakun.php',
-        'role' => ['admin']
+        'role' => ['admin', 'superadmin']
     ],
 ];
 

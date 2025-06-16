@@ -1,47 +1,19 @@
 <?php
-session_start();
+    session_start();
+    include 'controller/auth.php';
 
-$users = [
-    [
-        'id_user' => 1,
-        'nama' => 'Nabila',
-        'email' => 'nabila@example.com',
-        'password' => '12345', 
-        'role' => 'pelapor'
-    ],
-    [
-        'id_user' => 2,
-        'nama' => 'Admin',
-        'email' => 'admin@example.com',
-        'password' => 'admin123',
-        'role' => 'admin'
-    ]
-];
-
-// Proses saat form dikirim
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Cek apakah user valid
-    $valid_user = null;
-    foreach ($users as $user) {
-        if ($user['email'] === $email && $user['password'] === $password) {
-            $valid_user = $user;
-            break;
-        }
-    }
-
-    if ($valid_user) {
-        // Simpan ke session
-        $_SESSION['user'] = $valid_user;
-        // Redirect ke dashboard
+    if (isset($_SESSION['user'])) {
         header("Location: dashboard.php");
         exit;
-    } else {
-        $error = "Email atau password salah!";
     }
-}
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $error = loginUser($email, $password);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 class="h5 text-center mb-3">Log In</h2>
 
              <form method="POST" action="">
+                 <?php if ($error): ?>
+                    <div class="alert alert-danger"><?= $error ?></div>
+                <?php endif; ?>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <div class="input-group">

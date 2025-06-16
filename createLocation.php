@@ -1,3 +1,13 @@
+<?php
+    include 'controller/location/create.php';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+        $lokasi = $_POST['lokasi'];
+
+        $error = createLokasi($lokasi);
+    }
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,13 +28,13 @@
 
         <!-- Content -->
         <div class="bg-primary bg-opacity-25 p-4 rounded shadow mt-5">
-            <form method="POST" action="proses-laporan.php" class="mt-4 p-4 border rounded shadow-sm bg-white">
+            <form method="POST" action="" class="mt-4 p-4 border rounded shadow-sm bg-white">
 
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label fw-bold">Lokasi</label>
                     <div class="col-sm-1 text-center">:</div>
                     <div class="col-sm-8">
-                        <input type="text" name="lokasi" class="form-control bg-light" placeholder="Contoh: Jl. Palawaran 1, Gang Salak" value="Jl. Palawaran 1, Gang salak" required>
+                        <input type="text" name="lokasi" class="form-control bg-light" placeholder="Contoh: Jl. Palawaran 1, Gang Salak"  required>
                     </div>
                 </div>
 
