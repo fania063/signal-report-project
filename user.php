@@ -1,11 +1,6 @@
 <?php
-// Data mock untuk tabel akun
-$data_akun = [
-    ['id' => 1, 'nama' => 'Ahmad Fadli', 'email' => 'fadli@gmail.com', 'lokasi' => 'Pelawaran'],
-    ['id' => 2, 'nama' => 'Siti Nurhaliza', 'email' => 'siti.nurhaliza@yahoo.com', 'lokasi' => 'Karang Sentul'],
-    ['id' => 3, 'nama' => 'Budi Santoso', 'email' => 'budi.santoso@outlook.com', 'lokasi' => 'Jl. Tangsi'],
-    ['id' => 4, 'nama' => 'Rahmawati', 'email' => 'rahmawati@lapordesa.id', 'lokasi' => 'Darussalam']
-];
+ include 'controller/user/getAll.php';
+    $data_user = getAllUser();
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +24,7 @@ $data_akun = [
         <!-- Content -->
         <div class="bg-primary bg-opacity-25 p-4 rounded shadow mt-5">
             <div class="d-flex flex-column gap-2">
-                <a href="regakun.php" class="btn btn-dark mode px-4 ms-auto">Create</a>
+                <a href="createUser.php" class="btn btn-dark mode px-4 ms-auto">Create</a>
             </div>
 
                 <div class="table-responsive">
@@ -44,16 +39,20 @@ $data_akun = [
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data_akun as $index => $akun): ?>
+                            <?php foreach ($data_user as $index => $akun): ?>
                             <tr>
                                 <td><?= $index + 1 ?>.</td>
                                 <td><?= htmlspecialchars($akun['nama']) ?></td>
                                 <td><?= htmlspecialchars($akun['email']) ?></td>
-                                <td><?= htmlspecialchars($akun['lokasi']) ?></td>
+                                <td><?= htmlspecialchars($akun['nama_lokasi']) ?></td>
                                 <td>
                                     <div class="d-flex w-fit justify-content-center gap-2">
-                                        <button type="submit" class="btn btn-secondary px-4">Edit</button>
-                                        <button type="submit" class="btn btn-danger px-4">Delete</button>
+                                        <a href="editUser.php?id=<?= $akun['id']?>" class="btn btn-secondary px-4">Edit</a>
+                                        <a href="./controller/user/delete.php?id=<?= $user['id'] ?>" 
+                                        class="btn btn-danger px-4"
+                                        onclick="return confirm('Yakin ingin menghapus user ini?');">
+                                        Delete
+                                    </a>
                                     </div>
                                 </td>
                             </tr>
