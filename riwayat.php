@@ -37,7 +37,7 @@
                             <td>Gangguan Sinyal</td>
                             <td>Jl. Pelawaran 1, Gang Salak</td>
                             <td>Senin, 8 Juni 2025</td>
-                            <td><a href="detail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
+                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                         </tr>
                         <tr>
                             <td>2.</td>
@@ -45,7 +45,7 @@
                             <td>Gangguan Sinyal</td>
                             <td>Karang Sentul</td>
                             <td>Minggu, 20 Mei 2025</td>
-                            <td><a href="detail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
+                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                         </tr>
                         <tr>
                             <td>3.</td>
@@ -53,7 +53,7 @@
                             <td>Gangguan Sinyal</td>
                             <td>Jl. Tangsi</td>
                             <td>Rabu, 4 April 2025</td>
-                            <td><a href="detail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
+                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                         </tr>
                         <tr>
                             <td>4.</td>
@@ -61,7 +61,7 @@
                             <td>Gangguan Sinyal</td>
                             <td>Darussalam</td>
                             <td>Senin, 2 Februari 2025</td>
-                            <td><a href="detail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
+                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
