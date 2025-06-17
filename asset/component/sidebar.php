@@ -17,7 +17,7 @@ $menuItems = [
     [
         'title' => 'Tulis Laporan',
         'icon' => 'fas fa-pen',
-        'href' => 'lapor.php',
+        'href' => 'report.php',
         'role' => ['pelapor', 'superadmin']
     ],
     [
@@ -29,13 +29,13 @@ $menuItems = [
     [
         'title' => 'Laporan Masuk',
         'icon' => 'fas fa-users-cog',
-        'href' => 'admlapmasuk.php',
+        'href' => 'daftar.php',
         'role' => ['admin', 'superadmin']
     ],
     [
         'title' => 'Riwayat Laporan',
         'icon' => 'fas fa-chart-bar',
-        'href' => 'riwayat.php',
+        'href' => 'reporthistory.php',
         'role' => ['admin', 'superadmin']
     ],
     [
