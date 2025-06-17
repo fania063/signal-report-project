@@ -47,7 +47,7 @@ $menuItems = [
     [
         'title' => 'Registrasi Akun',
         'icon' => 'fas fa-user',
-        'href' => 'admregakun.php',
+        'href' => 'user.php',
         'role' => ['admin', 'superadmin']
     ],
 ];
