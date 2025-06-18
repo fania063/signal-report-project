@@ -67,7 +67,7 @@ include "controller/report/create.php";
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary px-4">SUBMIT</button>
+                    <button type="submit" class="btn btn-primary px-4">SUBMIT</button>                   
                 </div>
                 
             </form>

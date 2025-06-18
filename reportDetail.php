@@ -1,10 +1,36 @@
 <?php
     include 'controller/report/getOne.php';
+    include 'controller/report/updateStatus.php';
+    
     $id = $_GET['id'];
     $data_detail = getOneLaporan($id);
     $riwayat_status=GetAllRiwayatByIdLaporan($id);
 
     $status_sekarang=strtolower($data_detail['status']);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+       
+        $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        $action = $_POST['action'] ?? '';
+        $keterangan = $_POST['deskripsi'] ?? '';
+
+        if ($id <= 0 || empty($action) || empty($keterangan)) {
+            die("Data tidak lengkap.");
+        }
+
+        $status_baru = match ($action) {
+            'tolak' => 'Ditolak',
+            'proses' => 'Proses',
+            'selesai' => 'Selesai',
+            default => null,
+        };
+
+        if ($status_baru === null) {
+            die("Aksi tidak valid.");
+        }
+
+        // Jalankan update
+        updateStatusLaporan($id, $status_baru, $keterangan);
+    }
     
     switch ($status_sekarang) {
         case 'ajukan':
@@ -50,6 +76,11 @@
 <body>
 
 <div class="container py-5">
+     <?php include 'asset\component\sidebar.php'; ?>
+      <?php include 'asset\component\header.php';
+        
+    $isAdmin = isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['admin', 'superadmin']);
+      ?>
     <div class="bg-primary bg-opacity-25 p-4 rounded shadow mt-4">
         <form method="POST" action="#" class="bg-white p-4 rounded shadow-sm">
 
@@ -119,26 +150,40 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-
-            <?php if ($status_sekarang === 'ajukan' || $status_sekarang === 'proses'): ?>
-                <div class="row align-items-start mt-4">
-                    <div class="col-md-10">
-                        <div class="p-3 rounded h-100 d-flex align-items-center" style="background-color: #f4f2ff; border: 1px solid #d3cfe5;">
-                            <p class="mb-0 text-muted" style="font-size: 0.95rem;">
-                                Terima kasih atas laporannya. Kami akan segera menindaklanjuti gangguan sinyal di wilayah 
-                                <?= $data_detail['lokasi'] ?> yang disebabkan oleh tiang listrik roboh. Tim teknis akan 
-                                berkoordinasi dengan pihak terkait untuk memperbaiki kerusakan dan memulihkan jaringan secepatnya. 
-                                Mohon kesabarannya.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 d-flex flex-column justify-content-between gap-2">
-                        <button type="submit" name="action" value="tolak" class="btn btn-danger w-100">TOLAK</button>
-                        <button type="submit" name="action" value="proses" class="btn btn-primary w-100">PROSES</button>
+            <?php foreach ($riwayat_status as $data): ?>
+                <div class="col-md-10 mb-3">
+                    <div class="p-3 rounded h-100 d-flex align-items-center" style="background-color: #f4f2ff; border: 1px solid #d3cfe5;">
+                        <p class="mb-0 text-muted" style="font-size: 0.95rem;">
+                            <strong>Status:</strong> <?= $data['status']; ?> <br>
+                            <strong>Tanggal:</strong> <?= date('d M Y', strtotime($data['tgl'])); ?> <br>
+                            <?= $data['keterangan']; ?>
+                        </p>
                     </div>
                 </div>
+            <?php endforeach; ?>
+
+
+        <?php if ($isAdmin): ?>
+            <?php if ($status_sekarang === 'ajukan' || $status_sekarang === 'proses'): ?>
+                <form method="POST" action="">
+                    <div class="row align-items-start mt-4">
+                        <div class="col-md-10 mb-3">
+                            <label for="deskripsi" class="form-label fw-bold">Catatan / Deskripsi Status</label>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+                        </div>
+
+                        <div class="col-md-2 d-flex flex-column justify-content-between gap-2 mt-4">
+                            <?php if ($status_sekarang === 'ajukan'): ?>
+                                <button type="submit" name="action" value="tolak" class="btn btn-danger w-100">TOLAK</button>
+                                <button type="submit" name="action" value="proses" class="btn btn-primary w-100">PROSES</button>
+                            <?php elseif ($status_sekarang === 'proses'): ?>
+                                <button type="submit" name="action" value="selesai" class="btn btn-success w-100">SELESAI</button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </form>
             <?php endif; ?>
+        <?php endif; ?>
 
 
 
