@@ -23,13 +23,13 @@ $menuItems = [
     [
         'title' => 'Daftar Laporan',
         'icon' => 'fas fa-list',
-        'href' => 'daftar.php',
+        'href' => 'reportList.php',
         'role' => ['pelapor', 'superadmin']
     ],
     [
         'title' => 'Laporan Masuk',
         'icon' => 'fas fa-users-cog',
-        'href' => 'daftar.php',
+        'href' => 'reportEntry.php',
         'role' => ['admin', 'superadmin']
     ],
     [
