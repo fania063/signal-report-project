@@ -1,3 +1,8 @@
+<?php 
+ include 'controller/report/getAllByUnComplete.php';
+$data_report = getLaporanBelumSelesai();
+
+ ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -20,78 +25,56 @@
         <div class="bg-primary bg-opacity-25 p-4 rounded shadow mt-5">
             <div class="table-responsive">
                 <table class="table table-bordered align-middle">
-                    <thead class="table-light">
+                <thead class="table-light">
+                    <tr>
+                        <th>NO</th>
+                        <th>NAMA</th>
+                        <th>JUDUL</th>
+                        <th>LOKASI</th>
+                        <th>WAKTU</th>
+                        <th>DESKRIPSI GANGGUAN</th>
+                        <th>STATUS</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($data_report as $laporan) {
+                        // Format tanggal menjadi "Senin, 20 Juni 2025"
+                        $tanggal = date("l, j F Y", strtotime($laporan['tgl_laporan']));
+                        
+                        // Tentukan warna status
+                        $warna = '';
+                        if ($laporan['status'] == 'Ajukan') {
+                            $warna = 'background-color:rgb(33, 168, 221);';
+                        } elseif ($laporan['status'] == 'Proses') {
+                            $warna = 'background-color:rgb(213, 241, 88);';
+                        } elseif ($laporan['status'] == 'Selesai') {
+                            $warna = 'background-color:rgb(93, 212, 119);';
+                        } elseif ($laporan['status'] == 'Ditolak') {
+                            $warna = 'background-color:rgb(223, 41, 28);';
+                        }
+                        ?>
                         <tr>
-                            <th>NO</th>
-                            <th>JUDUL</th>
-                            <th>LOKASI</th>
-                            <th>WAKTU</th>
-                            <th>DESKRIPSI GANGGUAN</th>
-                            <th>STATUS</th>
-                            <th>AKSI</th>
+                            <td><?= $no++ ?>.</td>
+                             <td><?= htmlspecialchars($laporan['nama']) ?></td>
+                            <td><?= htmlspecialchars($laporan['judul']) ?></td>
+                            <td><?= htmlspecialchars($laporan['lokasi']) ?></td>
+                            <td><?= $tanggal ?></td>
+                            <td><?= htmlspecialchars($laporan['isi_laporan']) ?></td>
+                            <td>
+                                <span style="<?= $warna ?> color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">
+                                    <?= htmlspecialchars($laporan['status']) ?>
+                                </span>
+                            </td>
+                            <td><a href="reportDetail.php?id=<?= $laporan['id'] ?>" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                    <td>1.</td>
-                    <td>Gangguan Sinyal</td>
-                    <td>Jl. Pelawaran 1, Gang Salak</td>
-                    <td>Senin, 8 Juni 2025</td>
-                    <td>Sinyal hilang akibat tiang listrik rubuh</td>
-                    <td>
-                        <span style="background-color:rgb(213, 241, 88); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">Proses</span>
-                    </td>
-                    <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                    </tr>
-                    </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                    <td>2.</td>
-                    <td>Gangguan Sinyal</td>
-                    <td>Karang Sentul</td>
-                    <td>Minggu, 20 Mei 2025</td>
-                    <td>Hilang sinyal 3 hari 1 jam sekali mati</td>
-                    <td>
-                        <span style="background-color:rgb(33, 168, 221); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">Ajukan</span>
-                    </td>
-                    <td><a href="detail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                    </tr>
-                    </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                    <td>3.</td>
-                    <td>Gangguan Sinyal</td>
-                    <td>Jl. Tangsi</td>
-                    <td>Rabu,4 April 2025</td>
-                    <td>konsleting listrik</td>
-                    <td>
-                        <span style="background-color:rgb(93, 212, 119); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">Selesai</span>
-                    </td>
-                    <td><a href="detail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                    </tr>
-                    </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                    <td>4.</td>
-                    <td>Gangguan Sinyal</td>
-                    <td>Darussalam</td>
-                    <td>Senin, 2 Februari 2025</td>
-                    <td>Sinyal hilang akibat tiang listrik rubuh</td>
-                    <td>
-                        <span style="background-color:rgb(223, 41, 28); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">Ditolak</span>
-                    </td>
-                    <td><a href="penolakan.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                    </tr>
-                    </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                    </tr>
-                    </tbody>
-                </table>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
             </div>
         </div>
     </div>

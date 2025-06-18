@@ -1,3 +1,9 @@
+<?php 
+include 'controller/report/getAllbyComplete.php';
+
+$dataSelesai = getLaporanSelesai();
+
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,13 +17,15 @@
 
 <div class="d-flex vh-100 vw-100">
     <?php include 'asset\component\sidebar.php'; ?>
+
     <!-- Main Content -->
     <div class="vw-100 p-4 bg-light">
-        <!-- Email top-right -->
+        <!-- Header -->
         <?php include 'asset\component\header.php'; ?>  
 
         <!-- Content -->
         <div class="bg-primary bg-opacity-25 p-4 rounded shadow mt-5">
+            <h4 class="mb-4">Riwayat Laporan Selesai</h4>
             <div class="table-responsive">
                 <table class="table table-bordered align-middle">
                     <thead class="table-light">
@@ -31,38 +39,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>Bilqis</td>
-                            <td>Gangguan Sinyal</td>
-                            <td>Jl. Pelawaran 1, Gang Salak</td>
-                            <td>Senin, 8 Juni 2025</td>
-                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Zaidatul</td>
-                            <td>Gangguan Sinyal</td>
-                            <td>Karang Sentul</td>
-                            <td>Minggu, 20 Mei 2025</td>
-                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Qhiara</td>
-                            <td>Gangguan Sinyal</td>
-                            <td>Jl. Tangsi</td>
-                            <td>Rabu, 4 April 2025</td>
-                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>Vania</td>
-                            <td>Gangguan Sinyal</td>
-                            <td>Darussalam</td>
-                            <td>Senin, 2 Februari 2025</td>
-                            <td><a href="admdetail.php" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
-                        </tr>
+                        <?php
+                        $no = 1;
+                        if (!empty($dataSelesai)) {
+                            foreach ($dataSelesai as $laporan) {
+                                $tanggal = date("l, j F Y", strtotime($laporan['tgl_laporan']));
+                                ?>
+                                <tr>
+                                    <td><?= $no++ ?>.</td>
+                                    <td><?= htmlspecialchars($laporan['nama']) ?></td>
+                                    <td><?= htmlspecialchars($laporan['lokasi']) ?></td>
+                                    <td><?= $tanggal ?></td>
+                                    <td><?= htmlspecialchars($laporan['isi_laporan']) ?></td>
+                                    <td>
+                                        <a href="reportdetail.php?id=<?= $laporan['id'] ?>" class="text-dark">
+                                            <i class="fas fa-eye fa-lg"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                        } else {
+                            echo '<tr><td colspan="6" class="text-center">Belum ada laporan yang selesai.</td></tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

@@ -68,7 +68,7 @@ $data_report = getLaporanByUserId($user['id']);
                                     <?= htmlspecialchars($laporan['status']) ?>
                                 </span>
                             </td>
-                            <td><a href="detail.php?id=<?= $laporan['id'] ?>" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
+                            <td><a href="reportDetail.php?id=<?= $laporan['id'] ?>" class="text-dark"><i class="fas fa-eye fa-lg"></i></a></td>
                         </tr>
                         <?php
                     }
