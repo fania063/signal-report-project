@@ -6,7 +6,8 @@ include 'config/connect.php';
         $sql = "SELECT laporan.*, user.nama 
                 FROM laporan 
                 JOIN user ON laporan.user_id = user.id 
-                WHERE user_id = ?";
+                WHERE user_id = ?
+                ORDER BY laporan.id desc";
         $stmt = $koneksi->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
