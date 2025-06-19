@@ -32,7 +32,6 @@ $data_report = getLaporanBelumSelesai();
                         <th>JUDUL</th>
                         <th>LOKASI</th>
                         <th>WAKTU</th>
-                        <th>DESKRIPSI GANGGUAN</th>
                         <th>STATUS</th>
                         <th>AKSI</th>
                     </tr>
@@ -62,7 +61,6 @@ $data_report = getLaporanBelumSelesai();
                             <td><?= htmlspecialchars($laporan['judul']) ?></td>
                             <td><?= htmlspecialchars($laporan['lokasi']) ?></td>
                             <td><?= $tanggal ?></td>
-                            <td><?= htmlspecialchars($laporan['isi_laporan']) ?></td>
                             <td>
                                 <span style="<?= $warna ?> color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">
                                     <?= htmlspecialchars($laporan['status']) ?>

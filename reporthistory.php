@@ -34,7 +34,6 @@ $dataSelesai = getLaporanSelesai();
                             <th>NAMA PELAPOR</th>
                             <th>LOKASI</th>
                             <th>WAKTU</th>
-                            <th>DESKRIPSI GANGGUAN</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
@@ -50,7 +49,6 @@ $dataSelesai = getLaporanSelesai();
                                     <td><?= htmlspecialchars($laporan['nama']) ?></td>
                                     <td><?= htmlspecialchars($laporan['lokasi']) ?></td>
                                     <td><?= $tanggal ?></td>
-                                    <td><?= htmlspecialchars($laporan['isi_laporan']) ?></td>
                                     <td>
                                         <a href="reportdetail.php?id=<?= $laporan['id'] ?>" class="text-dark">
                                             <i class="fas fa-eye fa-lg"></i>

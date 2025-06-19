@@ -17,7 +17,7 @@ $data_report = getLaporanByUserId($user['id']);
 </head>
 <body>
 
-<div class="d-flex vh-100 vw-100">
+<div class="d-flex min-vh-100 vw-100">
     <!-- Main Content -->
     <div class="vw-100 p-4 bg-light">
         <!-- Email top-right -->
@@ -33,7 +33,6 @@ $data_report = getLaporanByUserId($user['id']);
                         <th>JUDUL</th>
                         <th>LOKASI</th>
                         <th>WAKTU</th>
-                        <th>DESKRIPSI GANGGUAN</th>
                         <th>STATUS</th>
                         <th>AKSI</th>
                     </tr>
@@ -62,7 +61,6 @@ $data_report = getLaporanByUserId($user['id']);
                             <td><?= htmlspecialchars($laporan['judul']) ?></td>
                             <td><?= htmlspecialchars($laporan['lokasi']) ?></td>
                             <td><?= $tanggal ?></td>
-                            <td><?= htmlspecialchars($laporan['isi_laporan']) ?></td>
                             <td>
                                 <span style="<?= $warna ?> color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">
                                     <?= htmlspecialchars($laporan['status']) ?>

@@ -30,6 +30,9 @@
 
         // Jalankan update
         updateStatusLaporan($id, $status_baru, $keterangan);
+
+        header("Location: reportDetail.php?id=$id");
+    exit();
     }
     
     switch ($status_sekarang) {
@@ -117,7 +120,7 @@
 
             <div class="mb-3 row">
                 <label class="col-sm-3 fw-bold">Deskripsi Gangguan</label>
-                <div class="col-sm-1">:</div>
+                <div class="col-sm-3">:</div>
                 <div class="col-sm-8"><?= $data_detail['isi_laporan']; ?></div>
             </div>
 
@@ -190,6 +193,22 @@
         </form>
     </div>
 </div>
+<!-- Bootstrap JS (wajib untuk komponen interaktif seperti sidebar) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script toggle sidebar (jika kamu pakai sidebar toggle manual) -->
+<script>
+    // Contoh script untuk toggle sidebar jika sidebar kamu pakai tombol
+    const toggleBtn = document.querySelector('#toggleSidebar');
+    const sidebar = document.querySelector('#sidebar');
+
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('d-none');
+        });
+    }
+</script>
+
 
 </body>
 </html>
