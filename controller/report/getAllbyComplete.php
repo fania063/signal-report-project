@@ -1,11 +1,12 @@
-<?php
+<?php 
 include 'config/connect.php';
-function getAllUser() {
-    global $koneksi;
 
-    $sql = "SELECT user.*, lokasi.nama_lokasi 
-        FROM user 
-        JOIN lokasi ON user.lokasi_id = lokasi.id";
+function getLaporanSelesai() {
+    global $koneksi;
+    $sql = "SELECT laporan.*, user.nama 
+            FROM laporan 
+            JOIN user ON laporan.user_id = user.id 
+            WHERE status = 'Selesai'";
     $result = $koneksi->query($sql);
 
     $data = [];
@@ -14,8 +15,5 @@ function getAllUser() {
             $data[] = $row;
         }
     }
-
-    $koneksi->close();
     return $data;
 }
-?>

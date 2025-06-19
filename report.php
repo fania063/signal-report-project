@@ -1,3 +1,17 @@
+<?php
+include "controller/report/create.php";
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user_id = $_POST['user_id'];
+    $judul = $_POST['judul'];
+    $lokasi = $_POST['lokasi'];
+    $tgl_laporan = $_POST['waktu'];
+    $isi_laporan = $_POST['deskripsi_gangguan'];
+
+    createLaporan($user_id, $judul, $lokasi, $tgl_laporan, $isi_laporan);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,13 +32,13 @@
 
         <!-- Content -->
         <div class="bg-primary bg-opacity-25 p-4 rounded shadow mt-5">
-            <form method="POST" action="proses-laporan.php" class="mt-4 p-4 border rounded shadow-sm bg-white">
-
+            <form method="POST" action="" class="mt-4 p-4 border rounded shadow-sm bg-white">
+                <input type="hidden" name="user_id" value="<?= htmlspecialchars($user['id']) ?>">
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label fw-bold">Judul</label>
                     <div class="col-sm-1 text-center">:</div>
                     <div class="col-sm-8">
-                        <input type="text" name="judul" class="form-control bg-light" placeholder="Masukkan Judul" value="Bilqis Nabila Ummami" required>
+                        <input type="text" name="judul" class="form-control bg-light" placeholder="Masukkan Judul" required>
                     </div>
                 </div>
 
@@ -32,7 +46,7 @@
                     <label class="col-sm-3 col-form-label fw-bold">Lokasi</label>
                     <div class="col-sm-1 text-center">:</div>
                     <div class="col-sm-8">
-                        <input type="text" name="lokasi" class="form-control bg-light" placeholder="Contoh: Jl. Palawaran 1, Gang Salak" value="Jl. Palawaran 1, Gang salak" required>
+                        <input type="text" name="lokasi" class="form-control bg-light" placeholder="Contoh: Jl. Palawaran 1, Gang Salak" required>
                     </div>
                 </div>
 
@@ -40,7 +54,7 @@
                     <label class="col-sm-3 col-form-label fw-bold">Waktu</label>
                     <div class="col-sm-1 text-center">:</div>
                     <div class="col-sm-8">
-                        <input type="text" name="waktu" class="form-control bg-light" placeholder="Contoh: Senin, 8 Juni 2025" value="Senin, 8 Juni 2025" required>
+                        <input type="date" name="waktu" class="form-control bg-light" placeholder="Contoh: Senin, 8 Juni 2025" required>
                     </div>
                 </div>
 
@@ -48,7 +62,7 @@
                     <label class="col-sm-3 col-form-label fw-bold">Deskripsikan Gangguan</label>
                     <div class="col-sm-1 text-center">:</div>
                     <div class="col-sm-8">
-                        <textarea name="deskripsi_gangguan" class="form-control bg-light" rows="3" placeholder="Contoh: Sinyal hilang akibat tiang listrik rubuh" required>Sinyal hilang akibat,tiang Listrik rubuh</textarea>
+                        <textarea name="deskripsi_gangguan" class="form-control bg-light" rows="3" placeholder="Masukkan deskripsi gangguan" required></textarea>
                     </div>
                 </div>
 
@@ -57,7 +71,6 @@
                 </div>
                 
             </form>
-
         </div>
     </div>
 </div>
