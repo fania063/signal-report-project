@@ -9,11 +9,11 @@
 </head>
 <body>
 
-<div class="d-flex vh-100">
+<div class="d-flex min-vh-100 bg-light">
     <?php include 'asset\component\sidebar.php'; ?>
 
     <!-- Main Content -->
-    <div class="flex-grow-1 h-full p-4 bg-light">
+    <div class="flex-grow-1 h-full p-4 ">
         <!-- Email top-right -->
          <?php include 'asset\component\header.php'; ?>
 

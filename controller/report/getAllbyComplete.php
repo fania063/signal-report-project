@@ -6,7 +6,9 @@ function getLaporanSelesai() {
     $sql = "SELECT laporan.*, user.nama 
             FROM laporan 
             JOIN user ON laporan.user_id = user.id 
-            WHERE status = 'Selesai'";
+            WHERE status = 'Selesai'
+            ORDER BY laporan.id desc";
+            
     $result = $koneksi->query($sql);
 
     $data = [];
