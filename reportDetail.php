@@ -118,10 +118,16 @@
                 </div>
             </div>
 
-            <div class="mb-3 row">
-                <label class="col-sm-3 fw-bold">Deskripsi Gangguan</label>
-                <div class="col-sm-3">:</div>
-                <div class="col-sm-8"><?= $data_detail['isi_laporan']; ?></div>
+             <div class="mb-3 cols">
+               <div class="row">
+                    <label class="col-sm-3 mb-3 fw-bold">Deskripsi Gangguan</label>
+                    <div class="col-sm-1">:</div>
+               </div>
+                <div class="col-sm-12 mt-3">
+                    <div class="isi-laporan-wrapper">
+                        <?= $data_detail['isi_laporan']; ?>
+                    </div>
+                </div>
             </div>
 
             <div class="mb-3 row">

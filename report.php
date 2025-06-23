@@ -27,8 +27,9 @@ include "controller/report/create.php";
     selector: 'textarea[name="deskripsi_gangguan"]',
     height: 300,
     menubar: false,
+    
     plugins: 'lists link image preview',
-    toolbar: 'undo redo | bold italic underline | bullist numlist | link image | preview',
+    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | preview',
     branding: false,
 
     // 🔽 Konfigurasi upload
