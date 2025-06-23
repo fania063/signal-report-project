@@ -20,17 +20,18 @@ function getOneLaporan($id) {
         return null;
     }
 }
-function GetAllRiwayatByIdLaporan($id){
-       global $koneksi;
-       $stmt= $koneksi->prepare("SELECT * from riwayat_status where laporan_id = ?");
-       $stmt->bind_param("i", $id);
-       $stmt->execute();
-       $result = $stmt->get_result();
 
-     if ($result->num_rows > 0) {
-        return $result->fetch_assoc();
+function GetAllRiwayatByIdLaporan($id) {
+    global $koneksi;
+
+    $stmt = $koneksi->prepare("SELECT * FROM riwayat_status WHERE laporan_id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        return $result->fetch_all(MYSQLI_ASSOC); // Mengembalikan semua data sebagai array asosiatif
     } else {
-        return null;
+        return []; // Kembalikan array kosong agar aman saat di-loop
     }
-
 }

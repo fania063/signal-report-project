@@ -48,10 +48,11 @@
                                 <td>
                                     <div class="d-flex w-fit justify-content-center gap-2">
                                         <a href="editUser.php?id=<?= $akun['id']?>" class="btn btn-secondary px-4">Edit</a>
-                                        <a href="./controller/user/delete.php?id=<?= $user['id'] ?>" 
+                                        <a href="./controller/user/delete.php?id=<?= $akun['id'] ?>" 
                                         class="btn btn-danger px-4"
-                                        onclick="return confirm('Yakin ingin menghapus user ini?');">
+                                        onclick="return confirm('Yakin ingin menghapus lokasi ini?');">
                                         Delete
+                                    </a>
                                     </a>
                                     </div>
                                 </td>

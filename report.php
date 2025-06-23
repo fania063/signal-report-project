@@ -21,12 +21,54 @@ include "controller/report/create.php";
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="asset/css/style.css" rel="stylesheet">
 </head>
+<script src="https://cdn.tiny.cloud/1/eds3p4ld667yso01tcd39wu1290sbd56o5jo5sfgd0a2h2q8/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea[name="deskripsi_gangguan"]',
+    height: 300,
+    menubar: false,
+    plugins: 'lists link image preview',
+    toolbar: 'undo redo | bold italic underline | bullist numlist | link image | preview',
+    branding: false,
+
+    // 🔽 Konfigurasi upload
+    automatic_uploads: true,
+    images_upload_url: 'controller/upload-image.php',
+    file_picker_types: 'image',
+    file_picker_callback: function (cb, value, meta) {
+      if (meta.filetype === 'image') {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+
+        input.onchange = function () {
+          const file = this.files[0];
+          const reader = new FileReader();
+
+          reader.onload = function () {
+            const id = 'blobid' + (new Date()).getTime();
+            const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+            const base64 = reader.result.split(',')[1];
+            const blobInfo = blobCache.create(id, file, base64);
+            blobCache.add(blobInfo);
+            cb(blobInfo.blobUri(), { title: file.name });
+          };
+
+          reader.readAsDataURL(file);
+        };
+
+        input.click();
+      }
+    }
+  });
+</script>
+
 <body>
 
-<div class="d-flex vh-100 vw-100">
+<div class="d-flex min-vh-100 vw-100 bg-light">
      <?php include 'asset\component\sidebar.php'; ?>
     <!-- Main Content -->
-    <div class="vw-100 p-4 bg-light">
+    <div class="vw-100 p-4 ">
         <!-- Email top-right -->
          <?php include 'asset\component\header.php'; ?>
 
@@ -62,12 +104,12 @@ include "controller/report/create.php";
                     <label class="col-sm-3 col-form-label fw-bold">Deskripsikan Gangguan</label>
                     <div class="col-sm-1 text-center">:</div>
                     <div class="col-sm-8">
-                        <textarea name="deskripsi_gangguan" class="form-control bg-light" rows="3" placeholder="Masukkan deskripsi gangguan" required></textarea>
+                        <textarea name="deskripsi_gangguan" class="form-control bg-light" rows="3" placeholder="Masukkan deskripsi gangguan" ></textarea>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary px-4">SUBMIT</button>
+                    <button type="submit" class="btn btn-primary px-4">SUBMIT</button>                   
                 </div>
                 
             </form>
